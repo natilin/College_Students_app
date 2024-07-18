@@ -26,7 +26,7 @@ namespace College_Students_app.DAL.Repositories
     }
 
 
-    bool RegisteryToCycle(int studentID, int cycleID)
+    bool public RegisteryToCycle(int studentID, int cycleID)
     {
 
         // משתמש בטרנזקציה כדי לוודא שלא ייתכן מצב שמתמש נרשם לקורס אבל לא התעדכן המחיר ברשימות או ההיפך
@@ -62,8 +62,9 @@ namespace College_Students_app.DAL.Repositories
         SqlParameter[] parameters = {
                 new SqlParameter("@Student_ID", studentID),
                 new SqlParameter("@Cycle_ID", cycleID),
- 
-            };
+             };
+        int rowAffected = _dbContext.ExecuteNonQuery(query, parameters);
+        return rowAffected > 0;
     }
-
+    
 }
