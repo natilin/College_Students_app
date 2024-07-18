@@ -38,9 +38,8 @@ namespace College_Students_app.Forms
                 textBox_pass.Clear();
                 string message = "Username or password is incorrect";
                 MessageBox.Show(message);
-
             }
-       
+
         }
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
@@ -49,6 +48,11 @@ namespace College_Students_app.Forms
             {
                 Application.Exit();
             }
+        }
+
+        private void linkLabel_sign_up_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _handler.ShowForm("SignUpForm");
         }
     }
 }

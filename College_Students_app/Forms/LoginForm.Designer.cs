@@ -88,6 +88,7 @@
             linkLabel_sign_up.TabIndex = 5;
             linkLabel_sign_up.TabStop = true;
             linkLabel_sign_up.Text = "רישום";
+            linkLabel_sign_up.LinkClicked += linkLabel_sign_up_LinkClicked;
             // 
             // LoginForm
             // 

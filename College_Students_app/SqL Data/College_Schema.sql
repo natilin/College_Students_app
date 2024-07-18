@@ -27,8 +27,9 @@ CREATE TABLE Cycles(
 	Start_Day date,
 	End_Day date,
 	Start_Hour time,
-	End_Hour time
+	End_Hour time,
 	Price INT NOT NULL,
+	In_Registration bit
 	);
 
 CREATE TABLE Activity_days(

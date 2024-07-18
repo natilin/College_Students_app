@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace College_Students_app.DAL.Repositories
 {
-    internal class CoursesRepositories
+    public class CoursesRepositories
     {
         private readonly DBContext _dbContext;
         public CoursesRepositories(DBContext dbContext)
@@ -17,11 +17,12 @@ namespace College_Students_app.DAL.Repositories
         }
         public List<string> GetCoursesListToRegestery(int studentID)
         {
+            //המתודה מחזירה רק קורסים שהמשתמש לא נרשם אליהם ובודקת שהקורס פתוח להרשמה
             string query = @"select DISTINCT c.Name
             from Courses c
             INNER JOIN Cycles ON c.Course_ID = Cycles.Course_ID
             INNER JOIN Cycles_Student ON Cycles.Cycle_ID = Cycles_Student.Cycle_ID
-            WHERE Cycles_Student.Cycle_ID != @ID";
+            WHERE Cycles_Student.Cycle_ID != @ID AND Cycles.In_Registration = 1";
 
             SqlParameter[] parameters = {
                 new SqlParameter("@Student_ID", studentID),
@@ -35,7 +36,27 @@ namespace College_Students_app.DAL.Repositories
             }
             return Courses;
         }
+        public List<string> GetUserCourses(int studentID)
+        {
+            //המתודה מחזירה רשימה של שמות הקורסים שהמשתמש רשום אליהם
+            string query = @"select DISTINCT c.Name
+            from Courses c
+            INNER JOIN Cycles ON c.Course_ID = Cycles.Course_ID
+            INNER JOIN Cycles_Student ON Cycles.Cycle_ID = Cycles_Student.Cycle_ID
+            WHERE Cycles_Student.Cycle_ID = @ID";
 
+            SqlParameter[] parameters = {
+                new SqlParameter("@ID", studentID),
+             };
+
+            List<string> Courses = new List<string>();
+            DataTable db = _dbContext.ExecuteQuery(query, parameters);
+            foreach (DataRow row in db.Rows)
+            {
+                Courses.Add(row["Name"].ToString());
+            }
+            return Courses;
+        }
 
         public bool RegisteryToCycle(int studentID, int cycleID)
         {

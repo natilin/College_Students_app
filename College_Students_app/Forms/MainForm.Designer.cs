@@ -29,25 +29,38 @@
         private void InitializeComponent()
         {
             Hello_lable = new Label();
+            listView_Courses_list = new ListView();
             SuspendLayout();
             // 
             // Hello_lable
             // 
             Hello_lable.AutoSize = true;
-            Hello_lable.Location = new Point(394, 50);
+            Hello_lable.Location = new Point(307, 46);
             Hello_lable.Name = "Hello_lable";
-            Hello_lable.Size = new Size(59, 25);
+            Hello_lable.Size = new Size(173, 25);
             Hello_lable.TabIndex = 0;
-            Hello_lable.Text = "label1";
+            Hello_lable.Text = "רשימת הקורסים שלי";
             // 
-            // MainFormcs
+            // listView_Courses_list
+            // 
+            listView_Courses_list.GridLines = true;
+            listView_Courses_list.Location = new Point(237, 127);
+            listView_Courses_list.Name = "listView_Courses_list";
+            listView_Courses_list.Size = new Size(326, 268);
+            listView_Courses_list.TabIndex = 1;
+            listView_Courses_list.UseCompatibleStateImageBehavior = false;
+            // 
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 542);
+            Controls.Add(listView_Courses_list);
             Controls.Add(Hello_lable);
-            Name = "MainFormcs";
-            Text = "MainFormcs";
+            Name = "MainForm";
+            RightToLeft = RightToLeft.Yes;
+            RightToLeftLayout = true;
+            Text = "מסך ראשי";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -55,5 +68,6 @@
         #endregion
 
         private Label Hello_lable;
+        private ListView listView_Courses_list;
     }
 }
