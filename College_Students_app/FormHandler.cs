@@ -1,5 +1,6 @@
 ﻿using College_Students_app.DAL;
 using College_Students_app.DAL.Repositories;
+using College_Students_app.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,19 @@ namespace College_Students_app
             SignUpRepository = new SignUpRepository(dbCox);
             logingform = new Login_form(SignUpRepository ,this);
             logingform.Show();
+
+        }
+        public void ShowForm(string formName, string ID = null)
+        {
+            CloseAllForms();
+
+            Form form = formName switch
+            {
+                "LoginForm" => new LoginForm(this),
+                "MainForm" => new MainForm(this),
+                _ => throw new ArgumentException("Invalid form name.", nameof(formName)),
+            };
+            form.Show();
 
         }
     }
