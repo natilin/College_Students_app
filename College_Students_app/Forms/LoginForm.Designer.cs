@@ -1,6 +1,6 @@
-﻿namespace College_Students_app
+﻿namespace College_Students_app.Forms
 {
-    partial class Login_form
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            label1 = new Label();
+            button_Enter = new Button();
+            label_TZ = new Label();
             label2 = new Label();
             textBox_TZ = new TextBox();
             textBox_pass = new TextBox();
             linkLabel_sign_up = new LinkLabel();
             SuspendLayout();
             // 
-            // button1
+            // button_Enter
             // 
-            button1.Location = new Point(256, 279);
-            button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 0;
-            button1.Text = "כניסה";
-            button1.UseVisualStyleBackColor = true;
+            button_Enter.Location = new Point(256, 274);
+            button_Enter.Name = "button_Enter";
+            button_Enter.Size = new Size(112, 34);
+            button_Enter.TabIndex = 0;
+            button_Enter.Text = "כניסה";
+            button_Enter.UseVisualStyleBackColor = true;
+            button_Enter.Click += button1_Click;
             // 
-            // label1
+            // label_TZ
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(256, 29);
-            label1.Name = "label1";
-            label1.Size = new Size(104, 25);
-            label1.TabIndex = 1;
-            label1.Text = "תעודת זהות";
+            label_TZ.AutoSize = true;
+            label_TZ.Location = new Point(256, 29);
+            label_TZ.Name = "label_TZ";
+            label_TZ.Size = new Size(104, 25);
+            label_TZ.TabIndex = 1;
+            label_TZ.Text = "תעודת זהות";
             // 
             // label2
             // 
@@ -88,7 +89,7 @@
             linkLabel_sign_up.TabStop = true;
             linkLabel_sign_up.Text = "רישום";
             // 
-            // Login_form
+            // LoginForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -97,9 +98,9 @@
             Controls.Add(textBox_pass);
             Controls.Add(textBox_TZ);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(button1);
-            Name = "Login_form";
+            Controls.Add(label_TZ);
+            Controls.Add(button_Enter);
+            Name = "LoginForm";
             RightToLeft = RightToLeft.Yes;
             RightToLeftLayout = true;
             Text = "Login_form";
@@ -109,11 +110,13 @@
 
         #endregion
 
-        private Button button1;
-        private Label label1;
+        private Button button_Enter;
+        private Label label_TZ;
         private Label label2;
         private TextBox textBox_TZ;
         private TextBox textBox_pass;
         private LinkLabel linkLabel_sign_up;
     }
+
+       
 }

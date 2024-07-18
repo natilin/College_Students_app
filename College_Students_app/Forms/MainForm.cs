@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace College_Students_app.Forms
 {
-    public partial class MainFormcs : Form
+    public partial class MainForm : Form
     {
-        public MainFormcs()
+        private FormHandler _handler;
+        public MainForm(FormHandler handler)
         {
             InitializeComponent();
+            _handler = handler;
         }
     }
 }

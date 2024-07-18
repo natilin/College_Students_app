@@ -44,6 +44,8 @@ CREATE TABLE Activity_days(
 CREATE TABLE Cycles_Student(
 	Student_ID int FOREIGN KEY REFERENCES Students(Student_ID),
 	Cycle_ID int FOREIGN KEY REFERENCES Cycles(Cycle_ID),
+	CONSTRAINT UC_Student_ID_Cycle_ID UNIQUE (Student_ID,Cycle_ID)
+
 	);
 
 CREATE TABLE Subjects(

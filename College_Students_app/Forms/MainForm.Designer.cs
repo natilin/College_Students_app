@@ -1,6 +1,6 @@
 ﻿namespace College_Students_app.Forms
 {
-    partial class MainFormcs
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.

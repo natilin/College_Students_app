@@ -15,22 +15,33 @@ namespace College_Students_app.DAL.Repositories
         {
             _dbContext = dbContext;
         }
-
-    } List<string> GetCoursesListToRegestery(int ID)
-    {
-        string query = @"select DISTINCT c.Name
+        public List<string> GetCoursesListToRegestery(int studentID)
+        {
+            string query = @"select DISTINCT c.Name
             from Courses c
             INNER JOIN Cycles ON c.Course_ID = Cycles.Course_ID
             INNER JOIN Cycles_Student ON Cycles.Cycle_ID = Cycles_Student.Cycle_ID
             WHERE Cycles_Student.Cycle_ID != @ID";
-    }
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@Student_ID", studentID),
+             };
+
+            List<string> Courses = new List<string>();
+            DataTable db = _dbContext.ExecuteQuery(query, parameters);
+            foreach (DataRow row in db.Rows)
+            {
+                Courses.Add(row["Name"].ToString());
+            }
+            return Courses;
+        }
 
 
-    bool public RegisteryToCycle(int studentID, int cycleID)
-    {
+        public bool RegisteryToCycle(int studentID, int cycleID)
+        {
 
-        // משתמש בטרנזקציה כדי לוודא שלא ייתכן מצב שמתמש נרשם לקורס אבל לא התעדכן המחיר ברשימות או ההיפך
-        string query = @"BEGIN TRANSACTION
+            // משתמש בטרנזקציה כדי לוודא שלא ייתכן מצב שמתמש נרשם לקורס אבל לא התעדכן המחיר ברשימות או ההיפך
+            string query = @"BEGIN TRANSACTION
 	        DECLARE @success int;
 	        BEGIN TRY
 		
@@ -59,12 +70,15 @@ namespace College_Students_app.DAL.Repositories
 
         SELECT @success";
 
-        SqlParameter[] parameters = {
+            SqlParameter[] parameters = {
                 new SqlParameter("@Student_ID", studentID),
                 new SqlParameter("@Cycle_ID", cycleID),
              };
-        int rowAffected = _dbContext.ExecuteNonQuery(query, parameters);
-        return rowAffected > 0;
+            int rowAffected = _dbContext.ExecuteNonQuery(query, parameters);
+            return rowAffected > 0;
+        }
+
     }
+    
     
 }

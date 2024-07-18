@@ -12,7 +12,7 @@ namespace College_Students_app.DAL.Repositories
         private readonly DBContext _dbContext;
         public SignUpRepository(DBContext dBContext)
         {
-            DBContext _dbContext = dBContext;
+             _dbContext = dBContext;
         }
         public bool SignUp(string natID, string firstName, string lastName, string password)
         {
@@ -28,15 +28,15 @@ namespace College_Students_app.DAL.Repositories
             int rowAffected = _dbContext.ExecuteNonQuery(query, parameters);
             return rowAffected > 0;
         }
-        public bool AuthenticateUser(string natID, string password)
+        public int? AuthenticateUser(string natID, string password)
         {
             string query = @"SELECT Student_ID FROM Students WHERE NatID = @NatID AND Password = @Pass ";
             SqlParameter[] parameters = {
                 new SqlParameter("@NatID", natID),
                 new SqlParameter("@Pass", password),
             };
-            string result = (string)_dbContext.ExecuteScalar(query, parameters);
-            return result != null;
+            return (int?)_dbContext.ExecuteScalar(query, parameters);
+            
         }
     }
 }
